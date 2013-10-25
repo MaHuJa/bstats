@@ -3,6 +3,7 @@
 
 PGconn* conn;
 std::ofstream logfile("bstats_log");
+std::ifstream conninfo("bstats_connline");
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -16,7 +17,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	case DLL_PROCESS_ATTACH:
 		logfile << "PROCESS_ATTACH" << std::endl;
 		// This should only happen once each time the server starts, so I'll try to leave it sync
-		conn = PQconnectdb("host=playground.mahuja.net dbname=postgres user=mahuja password=xxxxxxxx");
+		{
+			std::string s;
+			std::getline(conninfo,s);
+			conn = PQconnectdb(s.c_str());
+		}
 		break;
    	case DLL_THREAD_ATTACH:
 		logfile << "THREAD_ATTACH" << std::endl;

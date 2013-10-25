@@ -6,3 +6,5 @@ Debug
 /*.suo
 /*.opensdf
 /ipch
+/packages
+conninfo

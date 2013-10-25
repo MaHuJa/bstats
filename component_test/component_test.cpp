@@ -2,19 +2,16 @@
 //
 
 #include "stdafx.h"
-#include <libpq-fe.h>
+#include "dbthread.h"
 
+#include "logging.h"
+Logfile logfile;
 
-
-int main(int argc, char* argv[])
+int main(int, char*)
 {
-	PGconn* conn = PQconnectdb("host=playground.mahuja.net dbname=postgres user=mahuja password=xxxxxxxx");
-    if (PQstatus(conn) != CONNECTION_OK) {
-		std::cout << "Connection failed: " << PQerrorMessage(conn);
-    } else {
-		std::cout << "Success!";
-	}
-	PQfinish(conn);
+	dbthread db;
+	db.sendquery("create table DELETEME;");
+
 	return 0;
 }
 
