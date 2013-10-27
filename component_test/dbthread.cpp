@@ -3,7 +3,7 @@
 
 void dbthread::connectloop() {	
 	while (!conn.is_connected()) {
-		logfile << "Connect error: " << conn.error_message();
+		//logfile << "Connect error: " << conn.error_message();
 		std::this_thread::sleep_for(std::chrono::seconds(conn.retries));
 		conn.reconnect();
 	}
@@ -13,7 +13,7 @@ void dbthread::run() {
 	{
 		std::ifstream infile ("conninfo");
 		if (!infile.is_open()) { 
-			logfile << "Can't connect to db: File conninfo does not exist!\n"; 
+			//logfile << "Can't connect to db: File conninfo does not exist!\n"; 
 			return; 
 		}
 		std::getline (infile,s); 
@@ -27,32 +27,37 @@ void dbthread::run() {
 		if (s.empty()) continue;	// Running is false, or caller sent blank string
 		paramlist p = split(s);
 		assert (!p.empty());
-		for (auto& it : p) it = escapestring(it);
+		p[0] = conn.escapename(p[0]);
+		for (auto it = begin(p)+1; it!=end(p); it++) 
+			*it = conn.escapestring(*it);
+
 		std::ostringstream cmd;
 		// newsession is a special case because we need to react to its return value
-		if (p[0]=="newsession1") { // TODO support any newer version
+		if (p[0]=="\"newmission1\"") { // TODO support any newer version
 			if (p.size()<2) {
 				send_error("Newsession missing parameter",s);
 				throw std::invalid_argument("Missing parameter");
 			}
-			cmd << "SELECT " << std::move(p[0]) << '(' 
+			cmd << "SELECT \"server\"." << std::move(p[0]) << '(' 
 				<< sessionid << ',' // previous session id
 				<< std::move(p[1]) << ");";
-			auto r = conn.exec(cmd.str());
-			if (r.failed()) { send_error(conn.error_message(),s); }
+			string command = cmd.str();	//For debug purposes
+			auto r = conn.exec(command);
+			if (r.failed()) { 
+				send_error(conn.error_message(),s); 
+			}
 
 			s = r.get_single_value();
 			std::istringstream is(s); is >> sessionid;	// aka lexical_cast
 		} else {
 			// Normal case
-			cmd << "PERFORM " << std::move(p[0]) << '(' << sessionid;
+			cmd << "PERFORM \"server\"." << std::move(p[0]) << '(' << sessionid;
 			for (auto it = p.begin()+1; it<p.end(); it++) {
 				cmd << ',' << std::move(*it);
 			}
 			cmd << ");";
 			auto r = conn.exec(cmd.str());
 			if (r.failed()) { send_error(conn.error_message(),s); }
-
 		}
 		// todo check how this works with the database disconnecting
 	}
@@ -66,9 +71,7 @@ dbthread::~dbthread() {
 	running = false;
 	if (my_thread.joinable()) my_thread.join();
 }
-std::string dbthread::escapestring (std::string in) {
-	return conn.escapestring(in);
-}
+
 std::string dbthread::grab_cmd () {
 	string s;
 	bool is_empty = false;
@@ -88,8 +91,25 @@ std::string dbthread::grab_cmd () {
 	} while (is_empty);
 	return s;
 }
-dbthread::paramlist dbthread::split(string) {
-	throw std::exception("not implemented");	//todo
+dbthread::paramlist dbthread::split(string in) {
+	// I considered regexes, but then I'd have two problems... 
+	// I mean, it would be quite complicated to handle escaping etc
+	// But then I decided not to do that sort of stuff.
+
+	// It was the intention to treat "custom data" that could contain a ; as a last field, 
+	// but that requires that I can detect and pass the correct number of parameters.
+	// Ah well, I'll have to piece them together later somehow.
+	// At worst it will fail that command, or it will truncate that name.
+	const char separator = ';';
+	paramlist out;
+	auto iter = in.begin();
+	while (iter != in.end()) {
+		auto wordbegin = iter;
+		iter = std::find(iter,in.end(),separator);
+		out.emplace_back(wordbegin,iter);
+		if (iter!=in.end()) iter++;	// it's at a ; and will generate endless empty strings otherwise.
+	}
+	return out;
 }
 void dbthread::send_error(string msg, string input) {
 	throw std::exception("not implemented");	// todo

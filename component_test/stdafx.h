@@ -18,6 +18,7 @@
 #include <deque>
 #include <map>
 #include <stdexcept>
+#include <algorithm>
 
 #include "targetver.h"
 

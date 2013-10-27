@@ -1,6 +1,5 @@
 #pragma once
 #include "pg.h"
-#include "logging.h"
 
 class dbthread { 
 	typedef std::string string;
@@ -19,7 +18,6 @@ class dbthread {
 	string grab_cmd();
 	void send_error(string msg, string input);
 public:
-	string escapestring (string);
 	dbthread() : my_thread(&dbthread::run,this), running(true) {}
 	~dbthread();
 	bool is_online();
