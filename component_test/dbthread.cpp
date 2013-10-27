@@ -40,9 +40,9 @@ void dbthread::run() {
 				<< std::move(p[1]) << ");";
 			auto r = conn.exec(cmd.str());
 			if (r.failed()) { send_error(conn.error_message(),s); }
+
 			s = r.get_single_value();
 			std::istringstream is(s); is >> sessionid;	// aka lexical_cast
-			// todo consider better checking
 		} else {
 			// Normal case
 			cmd << "PERFORM " << std::move(p[0]) << '(' << sessionid;

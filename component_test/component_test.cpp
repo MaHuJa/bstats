@@ -4,13 +4,10 @@
 #include "stdafx.h"
 #include "dbthread.h"
 
-#include "logging.h"
-Logfile logfile;
-
 int main(int, char*)
 {
 	dbthread db;
-	db.sendquery("create table DELETEME;");
+	db.sendquery("newmission1;HELLO WORLD!!!11one");
 
 	return 0;
 }
