@@ -6,6 +6,7 @@ class Result;
 class Connection {
 	void* conn;
 public:
+	std::string escapestring (std::string) const;
 	int retries;
 	bool reconnect();
 public:
@@ -13,7 +14,7 @@ public:
 	void disconnect();
 	Result exec(std::string query);
 	bool is_connected();
-	std::string error_message();
+	std::string error_message() const;
 
 	Connection() : conn(nullptr), retries(0) {}
 	Connection(std::string conninfo) : conn(nullptr), retries(0) 
@@ -25,6 +26,7 @@ class Result {
 	void* res;
 public:
 	std::string get_single_value();
+	bool failed();
 	Result(void*);
 	~Result();
 

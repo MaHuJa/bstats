@@ -6,6 +6,7 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <fstream>
@@ -13,7 +14,10 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
+#include <vector>
 #include <deque>
+#include <map>
+#include <stdexcept>
 
 #include "targetver.h"
 

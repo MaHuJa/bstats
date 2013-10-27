@@ -15,7 +15,7 @@ void Connection::connect(std::string conninfo) {
 void Connection::disconnect() {
 	PQfinish(connection(conn));
 }
-std::string Connection::error_message() {
+std::string Connection::error_message() const {
 	return PQerrorMessage(connection(conn));
 }
 bool Connection::is_connected() {
@@ -45,7 +45,28 @@ std::string Result::get_single_value() {
 	return PQgetvalue(p,0,0);
 }
 
+std::string Connection::escapestring(std::string in)  const {
+	char* s = PQescapeLiteral(connection(conn),in.c_str(),in.size());
+	
+	if (!s) {
+		std::ostringstream out;
+		out << "Error on db escapestring: " << error_message();
+		throw std::runtime_error(out.str());
+	}
+	std::string out(s);	// TODO memory leaks if this throws
+	PQfreemem(s);
+	return out;
+}
 
-
+bool Result::failed() {
+	auto status = PQresultStatus(result(res));
+	switch(status) {
+	case PGRES_COMMAND_OK:
+	case PGRES_TUPLES_OK:
+		return false;
+	default:
+		return true;
+	}
+}
 
 }// namespace
