@@ -57,6 +57,18 @@ std::string Connection::escapestring(std::string in)  const {
 	PQfreemem(s);
 	return out;
 }
+std::string Connection::escapename(std::string in)  const {
+	char* s = PQescapeIdentifier(connection(conn),in.c_str(),in.size());
+	
+	if (!s) {
+		std::ostringstream out;
+		out << "Error on db escapestring: " << error_message();
+		throw std::runtime_error(out.str());
+	}
+	std::string out(s);	// TODO memory leaks if this throws
+	PQfreemem(s);
+	return out;
+}
 
 bool Result::failed() {
 	auto status = PQresultStatus(result(res));

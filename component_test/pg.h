@@ -7,6 +7,7 @@ class Connection {
 	void* conn;
 public:
 	std::string escapestring (std::string) const;
+	std::string escapename (std::string) const;
 	int retries;
 	bool reconnect();
 public:
