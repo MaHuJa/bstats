@@ -21,9 +21,21 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dbthread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dbthread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

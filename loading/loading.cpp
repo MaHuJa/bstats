@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	rve foo = reinterpret_cast<rve>(GetProcAddress(m,"RVExtension"));
 	if (!foo) { std::cout << "No RVExtension()\n"; goto end; }
 	char buf[256];
-	foo (buf,256,"*");
+	foo (buf,256,"newmission1;HELLO WORLD!!!11one");
 	std::cout << buf;
 end:
 	return 0;

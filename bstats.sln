@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bstats", "bstats\bstats.vcxproj", "{31181894-7B29-4A29-8783-79DCFD1BA7EC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "component_test", "component_test\component_test.vcxproj", "{690ABD82-2FF2-49AB-859F-545E7AE99E71}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "loading", "loading\loading.vcxproj", "{5E870395-1501-474A-899D-FD85E36709E3}"
 EndProject
 Global
@@ -37,21 +35,6 @@ Global
 		{31181894-7B29-4A29-8783-79DCFD1BA7EC}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{31181894-7B29-4A29-8783-79DCFD1BA7EC}.Release|Win32.ActiveCfg = Release|Win32
 		{31181894-7B29-4A29-8783-79DCFD1BA7EC}.Release|Win32.Build.0 = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Debug|Win32.ActiveCfg = Debug|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Debug|Win32.Build.0 = Debug|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.llvm|Any CPU.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.llvm|Mixed Platforms.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.llvm|Mixed Platforms.Build.0 = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.llvm|Win32.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.llvm|Win32.Build.0 = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Release|Any CPU.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Release|Win32.ActiveCfg = Release|Win32
-		{690ABD82-2FF2-49AB-859F-545E7AE99E71}.Release|Win32.Build.0 = Release|Win32
 		{5E870395-1501-474A-899D-FD85E36709E3}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{5E870395-1501-474A-899D-FD85E36709E3}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{5E870395-1501-474A-899D-FD85E36709E3}.Debug|Mixed Platforms.Build.0 = Debug|Win32
