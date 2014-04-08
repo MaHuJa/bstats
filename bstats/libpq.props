@@ -3,12 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>D:\devel\postgresql-9.3.0\src\interfaces\libpq;D:\devel\postgresql-9.3.0\src\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\devel\postgresql-9.3.0\Release\libpq;D:\devel\postgresql-9.3.0\Release\libpgport;$(LibraryPath)</LibraryPath>
+    <IncludePath>d:\libs\postgresql-9.3.4\src\interfaces\libpq;d:\libs\postgresql-9.3.4\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\libs\postgresql-9.3.4\src\interfaces\libpq\Release;d:\libs\postgresql-9.3.4\Release\libpgport;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>libpq.lib;libpgport.lib;ws2_32.lib;secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libpq.lib;ws2_32.lib;secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
