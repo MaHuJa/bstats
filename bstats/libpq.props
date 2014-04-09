@@ -3,8 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>d:\libs\postgresql-9.3.4\src\interfaces\libpq;d:\libs\postgresql-9.3.4\src\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\libs\postgresql-9.3.4\src\interfaces\libpq\Release;d:\libs\postgresql-9.3.4\Release\libpgport;$(LibraryPath)</LibraryPath>
+    <IncludePath>libpq;$(IncludePath)</IncludePath>
+    <LibraryPath>libpq;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
