@@ -20,7 +20,8 @@ int main(int argc, char* argv[])
 	char buf[256];
 	foo (buf,256,"newmission1;HELLO WORLD!!!11one");
 	std::cout << buf;
-	std::this_thread::sleep_for(std::chrono::seconds(3));
+	__asm nop;
+	std::this_thread::sleep_for(std::chrono::seconds(10));
 	return 0;
 }
 
