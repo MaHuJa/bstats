@@ -18,7 +18,7 @@ class dbthread {
 	string grab_cmd();
 	void send_error(string msg, string input);
 public:
-	dbthread() : my_thread(&dbthread::run,this), running(true) {}
+	dbthread() : my_thread(&dbthread::run,this), running(true), sessionid(0) {}
 	~dbthread();
 	bool is_online();
 	// A new command has arrived, add to the queue here.
