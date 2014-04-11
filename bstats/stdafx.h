@@ -25,5 +25,5 @@
 #include <libpq-fe.h>
 
 
-
+extern std::ofstream logfile;
 

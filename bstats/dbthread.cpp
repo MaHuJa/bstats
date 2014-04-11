@@ -3,7 +3,7 @@
 
 void dbthread::connectloop() {	
 	while (!conn.is_connected()) {
-		//logfile << "Connect error: " << conn.error_message();
+		logfile << "Connect error: " << conn.error_message();
 		std::this_thread::sleep_for(std::chrono::seconds(conn.retries));
 		conn.reconnect();
 	}
@@ -13,7 +13,7 @@ void dbthread::run() {
 	{
 		std::ifstream infile ("conninfo");
 		if (!infile.is_open()) { 
-			//logfile << "Can't connect to db: File conninfo does not exist!\n"; 
+			logfile << "Can't connect to db: File conninfo does not exist!\n"; 
 			return; 
 		}
 		std::getline (infile,s); 
@@ -44,7 +44,7 @@ void dbthread::run() {
 			string command = cmd.str();	//For debug purposes
 			auto r = conn.exec(command);
 			if (r.failed()) { 
-				send_error(conn.error_message(),s); 
+				send_error(conn.error_message(),command); 
 			}
 
 			s = r.get_single_value();
@@ -112,6 +112,9 @@ dbthread::paramlist dbthread::split(string in) {
 	return out;
 }
 void dbthread::send_error(string msg, string input) {
-	throw std::exception("not implemented");	// todo
+	logfile << "Error: " << msg << '\n' << input << '\n';
+	// for the time being, we'll also do
+	std::cerr << "Error: " << msg << '\n' << input << '\n';
+	// and sometime in the future also push the error to the database.
 }
 
