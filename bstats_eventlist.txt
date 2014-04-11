@@ -1,0 +1,33 @@
+Combat:
+
+inf v inf kills
+inf v veh kills
+veh v inf kills
+veh v veh kills
+Deaths
+roadkill
+drown
+
+objectives:
+
+destroy
+capture
+defend
+attempt
+assist
+
+ROE:
+
+inf teamkills
+veh tk
+Suicides
+Team damage
+accrash
+
+Teamwork:
+
+heal
+revive
+repair
+build
+tansport
