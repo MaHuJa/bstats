@@ -9,3 +9,4 @@ Debug
 /packages
 conninfo
 loading/bstats_log
+bstats_sqf/*
