@@ -51,7 +51,7 @@ void dbthread::run() {
 			std::istringstream is(s); is >> sessionid;	// aka lexical_cast
 		} else {
 			// Normal case
-			cmd << "PERFORM \"server\"." << std::move(p[0]) << '(' << sessionid;
+			cmd << "SELECT \"server\"." << std::move(p[0]) << '(' << sessionid;
 			for (auto it = p.begin()+1; it<p.end(); it++) {
 				cmd << ',' << std::move(*it);
 			}
@@ -59,7 +59,6 @@ void dbthread::run() {
 			auto r = conn.exec(cmd.str());
 			if (r.failed()) { send_error(conn.error_message(),s); }
 		}
-		// todo check how this works with the database disconnecting
 	}
 }
 

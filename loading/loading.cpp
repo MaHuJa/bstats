@@ -17,9 +17,15 @@ int main(int argc, char* argv[])
 	if (!m) { std::cout << "LoadLibraryA failed\n";	return 1; }
 	rve foo = reinterpret_cast<rve>(GetProcAddress(m,"_RVExtension@12"));
 	if (!foo) { std::cout << "No RVExtension()\n"; return 2; }
-	char buf[256];
-	foo (buf,256,"newmission1;HELLO WORLD!!!11one");
-	std::cout << buf;
+	auto call = [foo](const char* str) {
+		char buf[256];
+		foo(buf, 256, str);
+	};
+	call("newmission1;HELLO WORLD!!!11one");
+	// server.newplayer1(sessionid integer, playerid text, playerside text, jointime integer, playername_p text)
+	call("newplayer1;AAA;west;0;Testplayer A");
+	call("newplayer1;BBB;east;0;Testplayer B");
+	call("newplayer1;CCC;west;10;Testplayer C");
 	__asm nop;
 	std::this_thread::sleep_for(std::chrono::seconds(10));
 	return 0;
