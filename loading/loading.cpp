@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
 	call("newplayer1;AAA;west;0;Testplayer A");
 	call("newplayer1;BBB;east;0;Testplayer B");
 	call("newplayer1;CCC;west;10;Testplayer C");
+	call("inf_killed_inf1;AAA;BBB;15;testweapon;10;[10,20,0];[20,10,0]");
 	__asm nop;
 	std::this_thread::sleep_for(std::chrono::seconds(10));
 	return 0;
