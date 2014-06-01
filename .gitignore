@@ -10,3 +10,4 @@ Debug
 conninfo
 loading/bstats_log
 bstats_sqf/*
+loading/armalive_conninfo
