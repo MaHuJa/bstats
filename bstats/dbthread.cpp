@@ -11,7 +11,7 @@ void dbthread::connectloop() {
 void dbthread::run() {
 	std::string s;
 	{
-		std::ifstream infile ("conninfo");
+		std::ifstream infile ("armalive_conninfo");
 		if (!infile.is_open()) { 
 			logfile << "Can't connect to db: File conninfo does not exist!\n"; 
 			return; 
