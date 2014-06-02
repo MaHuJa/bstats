@@ -21,8 +21,9 @@ public:
 	dbthread() : my_thread(&dbthread::run,this), running(true), sessionid(0) {}
 	~dbthread();
 	bool is_online();
+
 	// A new command has arrived, add to the queue here.
-	// This function is designed to be called from its own thread.
+	// This function is designed to be called from some other thread than it creates.
 	void sendquery(string s);
 
 };
