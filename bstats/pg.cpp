@@ -39,10 +39,12 @@ Result::~Result() {
 
 std::string Result::get_single_value() {
 	PGresult* p = result(res);
-	assert(PQntuples(p)==1);
-	assert(PQnfields(p)==1);
-	assert(PQfformat(p,0)==0);	// is text
-	return PQgetvalue(p,0,0);
+	if (PQntuples(p) != 1 || PQnfields(p) != 1 || PQfformat(p, 0) != 0)	// format is text
+	{
+		__asm nop;	// breakpoint me!
+		// TODO: Exception
+	}
+	return PQgetvalue(p, 0, 0);
 }
 
 std::string Connection::escapestring(std::string in)  const {
