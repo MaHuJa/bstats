@@ -113,7 +113,7 @@ dbthread::paramlist dbthread::split(string in) {
 void dbthread::send_error(string msg, string input) {
 	logfile << "Error: " << msg << '\n' << input << '\n';
 	// for the time being, we'll also do
-	std::cerr << "Error: " << msg << '\n' << input << '\n';
+	//std::cerr << "Error: " << msg << '\n' << input << '\n';
 	// and sometime in the future also push the error to the database.
 }
 
