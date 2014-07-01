@@ -1,1 +1,6 @@
-New server: Add database user for server, add entry to server list with same name. 
+New database install:
+Add empty-id "player" to represent AI.
+
+New server: 
+Add database user for server, add entry to server list with same name. 
+Add conninfo, configure server to block scripts from loading it.
